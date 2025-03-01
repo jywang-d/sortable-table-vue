@@ -1,0 +1,60 @@
+{
+    "records": [
+        {
+            "recrod-id": 11112,
+            "status": "active",
+            "date": "01/01/2025",
+            "timing": "univercity of melbourne",
+            "f stream": "A stream",
+            "pid": "1234"
+        },
+        {
+            "recrod-id": 222223,
+            "status": "active",
+            "date": "01/01/2023",
+            "timing": "univercity of melbourne",
+            "f stream": "B stream",
+            "pid": "3234"
+        },
+        {
+            "recrod-id": 11113,
+            "status": "proposed",
+            "date": "16/01/2013",
+            "timing": "australian national university",
+            "f stream": "B stream",
+            "pid": "4567"
+        },
+        {
+            "recrod-id": 222225,
+            "status": "deactive",
+            "date": "01/01/2017",
+            "timing": "australian national university",
+            "f stream": "B stream",
+            "pid": "456897"
+        },
+        {
+            "recrod-id": 11118,
+            "status": "deactive",
+            "date": "01/01/2017",
+            "timing": "australian national university",
+            "f stream": "C stream",
+            "pid": "556897"
+        },
+        {
+            "recrod-id": 88536,
+            "status": "deactive",
+            "date": "01/12/2017",
+            "timing": "australian national university",
+            "f stream": "C stream",
+            "pid": "456894"
+        },
+        {
+            "recrod-id": 884,
+            "status": "deactive",
+            "date": "25/01/2017",
+            "timing": "australian national university",
+            "f stream": "C stream",
+            "pid": "956894"
+        }
+    ]
+}
