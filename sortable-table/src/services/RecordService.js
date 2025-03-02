@@ -20,5 +20,12 @@ export default {
         } catch (error) {
             console.log(error);
         }
+    },
+    async getFilteredRecords(queryString) {
+        try {
+            return await createAPICall.get(`records?${queryString}`)
+        } catch (error) {
+            console.log(error);
+        }
     }
 }

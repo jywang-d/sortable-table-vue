@@ -1,61 +1,8 @@
-<script setup>
-import RecordService from '@/services/RecordService';
-import { onMounted, ref, computed} from 'vue';
-
-const records = ref(null);
-const recordsKeys = ref(null);
-
-// create ref for sorting 
-const sortColumn = ref(null); // current column to sort by
-const sortDirection = ref('asc');
-
-function sort(key) {
-  if (sortColumn.value === key) {
-    sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc';
-    console.log(`${sortColumn.value} column is getting sored in ${sortDirection.value}`)
-  } else {
-    // sort by a new column in ascending order 
-    sortColumn.value = key;
-    sortDirection.value = 'asc';
-    console.log(`${sortColumn.value} column is getting sored in ${sortDirection.value}`)
-  }
-}
-onMounted(async () => {
-  try {
-    const response = await RecordService.getRecords();
-    records.value = response.data;
-    console.log(response.data)
-    recordsKeys.value = Object.keys(response.data[0]);
-    console.log(recordsKeys.value)
-  } catch (error) {
-    console.log(error)
-  }
-})
-
-
-
-// computed property for sorted data 
-const sortedData = computed(() => {
-  if (!sortColumn.value) {
-    console.log(`sortedData ${sortedData.value}`)
-    return records.value;
-  }
-  return [...records.value].sort((a, b) => {
-    const valueA = a[sortColumn.value];
-    const valueB = b[sortColumn.value]
-    console.log(`valueA ${valueA} typeof valueA is ${typeof(valueA)} valueB ${valueB}`)
-    if (typeof valueA === 'number' && typeof valueB === 'number') {
-      return sortDirection.value === 'asc' ? valueA - valueB : valueB - valueA
-    }
-
-  })
-})
-
-</script>
-
 <template>
   <div>
     <h1>table is here</h1>
+    <Filters @filtered-data="handleFilterData"/><br />
+
     <table>
       <thead>
         <tr>
@@ -96,6 +43,65 @@ const sortedData = computed(() => {
     </table>
   </div>
 </template>
+
+<script setup>
+import RecordService from '@/services/RecordService';
+import { onMounted, ref, computed} from 'vue';
+import Filters from './Filter/Filters.vue';
+
+const records = ref(null);
+const recordsKeys = ref(null);
+
+// create ref for sorting 
+const sortColumn = ref(null); // current column to sort by
+const sortDirection = ref('asc');
+
+function sort(key) {
+  if (sortColumn.value === key) {
+    sortDirection.value = sortDirection.value === 'asc' ? 'desc' : 'asc';
+    console.log(`${sortColumn.value} column is getting sored in ${sortDirection.value}`)
+  } else {
+    // sort by a new column in ascending order 
+    sortColumn.value = key;
+    sortDirection.value = 'asc';
+    console.log(`${sortColumn.value} column is getting sored in ${sortDirection.value}`)
+  }
+}
+onMounted(async () => {
+  try {
+    const response = await RecordService.getRecords();
+    records.value = response.data;
+    recordsKeys.value = Object.keys(response.data[0]);
+    console.log(recordsKeys.value)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
+function handleFilterData(filteredData) {
+  // bind records obj with filtered data
+  records.value = filteredData;
+}
+
+// computed property for sorted data 
+const sortedData = computed(() => {
+  if (!sortColumn.value) {
+    console.log(`sortedData ${sortedData.value}`)
+    return records.value;
+  }
+  return [...records.value].sort((a, b) => {
+    const valueA = a[sortColumn.value];
+    const valueB = b[sortColumn.value]
+    console.log(`valueA ${valueA} typeof valueA is ${typeof(valueA)} valueB ${valueB}`)
+    if (typeof valueA === 'number' && typeof valueB === 'number') {
+      return sortDirection.value === 'asc' ? valueA - valueB : valueB - valueA
+    }
+
+  })
+})
+
+</script>
+
 
 <style scoped>
 table {
