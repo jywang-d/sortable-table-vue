@@ -97,6 +97,7 @@ const sortedData = computed(() => {
       return sortDirection.value === 'asc' ? valueA - valueB : valueB - valueA
     }
 
+
   })
 })
 

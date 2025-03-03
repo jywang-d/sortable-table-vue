@@ -1,9 +1,11 @@
 <script setup>
-import SortableTable from './components/SortableTable.vue'
+import AppLayout from './components/Layouts/AppLayout.vue';
 </script>
 
 <template>
-    <SortableTable/>
+    <AppLayout >
+        <RouterView></RouterView>
+    </AppLayout>
 </template>
 
 <style scoped>
