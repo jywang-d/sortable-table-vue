@@ -1,10 +1,12 @@
 import AboutView from "@/views/AboutView.vue";
 import HomeView from "@/views/HomeView.vue";
 
-const { createRouter, createWebHashHistory } = require("vue-router");
+import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter( {
-    history: createWebHashHistory(import.meta.env.BASE_URL),
+
+    history: createWebHistory(),
+
     routes: [
         {
             path: '/',
